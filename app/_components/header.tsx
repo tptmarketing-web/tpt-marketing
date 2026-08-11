@@ -26,7 +26,7 @@ export default function Header({ brandName }: HeaderProps) {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/95 backdrop-blur-md shadow-md' : 'bg-transparent'
+        scrolled || menuOpen ? 'bg-white/95 backdrop-blur-md shadow-md' : 'bg-transparent'
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,18 +71,20 @@ export default function Header({ brandName }: HeaderProps) {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden pb-4">
-            {navLinks.map((link) => (
+          <nav className="md:hidden mb-3 rounded-2xl bg-white shadow-xl border border-gray-100 overflow-hidden">
+            {navLinks.map((link, i) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-yellow-100 transition-colors"
+                className={`block px-5 py-3.5 text-gray-700 font-semibold hover:bg-yellow-50 hover:text-gray-900 transition-colors ${
+                  i !== navLinks.length - 1 ? 'border-b border-gray-100' : ''
+                }`}
               >
                 {link.label}
               </a>
             ))}
-          </div>
+          </nav>
         )}
       </div>
     </header>
