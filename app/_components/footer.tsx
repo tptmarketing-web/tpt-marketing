@@ -1,5 +1,7 @@
 'use client';
 
+import TptLink from '@/components/tpt-link';
+
 interface Props {
   brandName: string;
   sellerName: string;
@@ -48,7 +50,7 @@ export default function Footer({ brandName, sellerName, tptStoreUrl, pinterestUr
               <a href="/products" className="block text-gray-400 hover:text-white text-sm transition-colors">Products</a>
               <a href="/#faq" className="block text-gray-400 hover:text-white text-sm transition-colors">FAQ</a>
               <a href="/#contact" className="block text-gray-400 hover:text-white text-sm transition-colors">Contact</a>
-              <a href={tptStoreUrl ?? '#'} target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-white text-sm transition-colors">TPT Store</a>
+              <TptLink href={tptStoreUrl ?? '#'} placement="footer" eventLabel="TPT Store" className="block text-gray-400 hover:text-white text-sm transition-colors">TPT Store</TptLink>
             </div>
           </div>
 
