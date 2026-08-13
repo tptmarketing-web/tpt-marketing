@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import RichTextEditor from '@/components/rich-text-editor';
 
 export default function AdminSettingsPage() {
   const [form, setForm] = useState<any>({});
@@ -138,11 +139,10 @@ export default function AdminSettingsPage() {
           <div key={f.key}>
             <label className="block text-sm font-medium text-gray-700 mb-2">{f.label}</label>
             {f.type === 'textarea' ? (
-              <textarea
+              <RichTextEditor
                 value={form?.[f.key] ?? ''}
-                onChange={(e) => handleChange(f.key, e.target.value)}
-                rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none"
+                onChange={(html) => handleChange(f.key, html)}
+                minHeight={140}
               />
             ) : (
               <input
@@ -200,12 +200,11 @@ export default function AdminSettingsPage() {
                     placeholder="Question"
                     className="w-full px-4 py-2.5 mb-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none"
                   />
-                  <textarea
+                  <RichTextEditor
                     value={faq?.answer ?? ''}
-                    onChange={(e) => updateFaq(i, 'answer', e.target.value)}
+                    onChange={(html) => updateFaq(i, 'answer', html)}
                     placeholder="Answer"
-                    rows={3}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none"
+                    minHeight={110}
                   />
                 </div>
               ))}
