@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import RichTextEditor from '@/components/rich-text-editor';
 
 export default function AdminLegalPage() {
   const [form, setForm] = useState<any>({});
@@ -59,11 +60,10 @@ export default function AdminLegalPage() {
         {sections.map(s => (
           <div key={s.key} className="bg-white rounded-2xl shadow-sm p-6">
             <label className="block text-lg font-bold text-gray-800 mb-3">{s.label}</label>
-            <textarea
+            <RichTextEditor
               value={form?.[s.key] ?? ''}
-              onChange={e => setForm((prev: any) => ({ ...(prev ?? {}), [s.key]: e.target.value }))}
-              rows={12}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none font-mono text-sm"
+              onChange={html => setForm((prev: any) => ({ ...(prev ?? {}), [s.key]: html }))}
+              minHeight={320}
             />
           </div>
         ))}
