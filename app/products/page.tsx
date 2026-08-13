@@ -7,6 +7,7 @@ import { Product } from '@/lib/models/product';
 import { SiteSettings } from '@/lib/models/site-settings';
 import { seedDatabase } from '@/lib/seed';
 import ProductsBrowser from './products-browser';
+import TptLink from '@/components/tpt-link';
 
 async function getData() {
   await connectDB();
@@ -64,14 +65,14 @@ export default async function ProductsPage() {
         {(!products || products.length === 0) ? (
           <div className="text-center py-20">
             <p className="text-gray-500">New resources coming soon! Check back later.</p>
-            <a
+            <TptLink
               href={tptStoreUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              placement="products_empty_state"
+              eventLabel="Visit My TPT Store"
               className="inline-block mt-6 px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-semibold rounded-xl transition-colors"
             >
               Visit My TPT Store
-            </a>
+            </TptLink>
           </div>
         ) : (
           <ProductsBrowser products={products} />
