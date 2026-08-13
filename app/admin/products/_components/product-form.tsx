@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import RichTextEditor from '@/components/rich-text-editor';
 
 interface PreviewImage {
   url: string;
@@ -195,11 +196,10 @@ export default function ProductForm({ initialData }: Props) {
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">Description *</label>
-        <textarea
+        <RichTextEditor
           value={form.description}
-          onChange={e => handleChange('description', e.target.value)}
-          rows={5}
-          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none"
+          onChange={html => handleChange('description', html)}
+          minHeight={180}
         />
       </div>
 
@@ -216,7 +216,7 @@ export default function ProductForm({ initialData }: Props) {
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">What&apos;s Included</label>
-        <textarea value={form.whatsIncluded} onChange={e => handleChange('whatsIncluded', e.target.value)} rows={4} className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none" />
+        <RichTextEditor value={form.whatsIncluded} onChange={html => handleChange('whatsIncluded', html)} minHeight={150} />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -236,7 +236,7 @@ export default function ProductForm({ initialData }: Props) {
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">Educational Goal</label>
-        <textarea value={form.educationalGoal} onChange={e => handleChange('educationalGoal', e.target.value)} rows={3} className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none" />
+        <RichTextEditor value={form.educationalGoal} onChange={html => handleChange('educationalGoal', html)} minHeight={120} />
       </div>
 
       <div>
