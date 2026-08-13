@@ -10,6 +10,7 @@ export interface ISiteSettings extends Document {
   sellerBio: string;
   sellerAvatarUrl: string | null;
   tptStoreUrl: string;
+  pinterestUrl: string | null;
   privacyPolicy: string;
   termsOfService: string;
   refundPolicy: string;
@@ -28,6 +29,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
     sellerBio: { type: String, required: true },
     sellerAvatarUrl: { type: String, default: null },
     tptStoreUrl: { type: String, required: true },
+    pinterestUrl: { type: String, default: null },
     privacyPolicy: { type: String, required: true },
     termsOfService: { type: String, required: true },
     refundPolicy: { type: String, required: true },
