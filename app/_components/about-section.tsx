@@ -1,5 +1,6 @@
 'use client';
 
+import RichText from '@/components/rich-text';
 interface Props {
   sellerName: string;
   sellerBio: string;
@@ -27,7 +28,7 @@ export default function AboutSection({ sellerName, sellerBio, sellerAvatarUrl, t
             </div>
           )}
           <h3 className="text-2xl font-bold text-gray-800 mb-3">{sellerName ?? 'Your Name'}</h3>
-          <p className="text-gray-600 mb-6 leading-relaxed">{sellerBio ?? ''}</p>
+          <RichText html={sellerBio} className="text-gray-600 mb-6 leading-relaxed" />
           <a
             href={tptStoreUrl ?? '#'}
             target="_blank"
