@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import RichText from '@/components/rich-text';
+import TptLink from '@/components/tpt-link';
 
 interface Product {
   _id: string;
@@ -131,14 +132,14 @@ export default function ProductModal({ product, onClose }: Props) {
             </div>
           )}
 
-          <a
+          <TptLink
             href={product?.tptProductUrl ?? '#'}
-            target="_blank"
-            rel="noopener noreferrer"
+            placement="product_modal"
+            eventLabel={product?.title ?? 'Product'}
             className="block w-full text-center px-8 py-4 bg-gradient-to-r from-yellow-400 to-green-400 hover:from-yellow-500 hover:to-green-500 text-gray-800 font-bold text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-[1.02]"
           >
             View &amp; Buy on Teachers Pay Teachers →
-          </a>
+          </TptLink>
         </div>
       </div>
     </div>
