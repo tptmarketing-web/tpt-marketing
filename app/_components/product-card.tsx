@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { htmlToPlainText } from '@/lib/html';
 
 export interface ProductCardData {
   _id: string;
@@ -91,12 +92,12 @@ export default function ProductCard({ product, className }: { product: ProductCa
       <div className="p-5 flex flex-col flex-1">
         <h3 className="text-lg font-bold text-gray-800 mb-2 line-clamp-2">{product?.title ?? 'Untitled'}</h3>
         {product?.description && (
-          <p className="text-sm text-gray-600 mb-2 line-clamp-2">{product.description}</p>
+          <p className="text-sm text-gray-600 mb-2 line-clamp-2">{htmlToPlainText(product.description)}</p>
         )}
         {product?.whatsIncluded && (
           <p className="text-sm text-gray-500 mb-3 line-clamp-2">
             <span className="font-semibold text-gray-700">What&apos;s included: </span>
-            {product.whatsIncluded}
+            {htmlToPlainText(product.whatsIncluded)}
           </p>
         )}
 
