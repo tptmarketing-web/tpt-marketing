@@ -111,6 +111,7 @@ export default function AdminSettingsPage() {
     { key: 'sellerName', label: 'Seller Name', type: 'text' },
     { key: 'sellerBio', label: 'Seller Bio', type: 'textarea' },
     { key: 'tptStoreUrl', label: 'TPT Store URL', type: 'text' },
+    { key: 'pinterestUrl', label: 'Pinterest URL (optional)', type: 'text' },
     { key: 'contactEmail', label: 'Contact Email', type: 'text' },
     { key: 'contactPhone', label: 'Contact Phone (optional)', type: 'text' },
   ];
