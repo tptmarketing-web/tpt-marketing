@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import RichText from '@/components/rich-text';
+import TptLink from '@/components/tpt-link';
 
 interface Product {
   _id: string;
@@ -132,26 +133,26 @@ export default function ProductDetailClient({ product, brandName, tptStoreUrl }:
               </section>
             )}
 
-            <a
+            <TptLink
               href={product?.tptProductUrl ?? '#'}
-              target="_blank"
-              rel="noopener noreferrer"
+              placement="product_detail"
+              eventLabel={product?.title ?? 'Product'}
               className="block w-full text-center px-8 py-4 bg-gradient-to-r from-yellow-400 to-green-400 hover:from-yellow-500 hover:to-green-500 text-gray-800 font-bold text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-[1.02]"
             >
               View &amp; Buy on Teachers Pay Teachers &rarr;
-            </a>
+            </TptLink>
           </div>
         </article>
 
         <div className="text-center mt-10">
-          <a
+          <TptLink
             href={tptStoreUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            placement="product_detail_store"
+            eventLabel="Browse more resources"
             className="text-sm font-semibold text-sky-600 hover:text-sky-700"
           >
             Browse more resources in my TPT store &rarr;
-          </a>
+          </TptLink>
         </div>
       </main>
     </div>
