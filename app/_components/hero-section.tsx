@@ -1,5 +1,7 @@
 'use client';
 
+import TptLink from '@/components/tpt-link';
+
 interface HeroProps {
   tagline: string;
   aboutText: string;
@@ -33,17 +35,17 @@ export default function HeroSection({ tagline, aboutText, tptStoreUrl }: HeroPro
           {aboutText ?? ''}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
+          <TptLink
             href={tptStoreUrl ?? '#'}
-            target="_blank"
-            rel="noopener noreferrer"
+            placement="hero"
+            eventLabel="Browse My TPT Store"
             className="inline-flex items-center gap-2 px-8 py-4 bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
           >
             Browse My TPT Store
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
-          </a>
+          </TptLink>
           <a
             href="#products"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white/80 hover:bg-white text-gray-800 font-bold text-lg rounded-2xl shadow-md hover:shadow-lg border border-gray-200 transition-all transform hover:scale-105"
