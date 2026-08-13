@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import RichText from '@/components/rich-text';
 
 interface Product {
   _id: string;
@@ -97,7 +98,7 @@ export default function ProductDetailClient({ product, brandName, tptStoreUrl }:
             </div>
 
             <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-5">{product?.title ?? 'Untitled'}</h1>
-            <p className="text-gray-600 text-lg leading-relaxed mb-8 whitespace-pre-line">{product?.description ?? ''}</p>
+            <RichText html={product?.description} className="text-gray-600 text-lg leading-relaxed mb-8" />
 
             {(product?.gradeLevel || product?.targetAudience) && (
               <section className="mb-4 p-5 bg-blue-50 rounded-2xl">
@@ -111,7 +112,7 @@ export default function ProductDetailClient({ product, brandName, tptStoreUrl }:
             {product?.whatsIncluded && (
               <section className="mb-4 p-5 bg-green-50 rounded-2xl">
                 <h2 className="font-bold text-gray-700 mb-1">What&apos;s Included</h2>
-                <p className="text-gray-600 whitespace-pre-line">{product.whatsIncluded}</p>
+                <RichText html={product.whatsIncluded} className="text-gray-600" />
               </section>
             )}
 
@@ -127,7 +128,7 @@ export default function ProductDetailClient({ product, brandName, tptStoreUrl }:
             {product?.educationalGoal && (
               <section className="mb-8 p-5 bg-yellow-50 rounded-2xl">
                 <h2 className="font-bold text-gray-700 mb-1">Educational Goal</h2>
-                <p className="text-gray-600">{product.educationalGoal}</p>
+                <RichText html={product.educationalGoal} className="text-gray-600" />
               </section>
             )}
 
