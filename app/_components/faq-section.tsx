@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import RichText from '@/components/rich-text';
 
 interface FAQ {
   question: string;
@@ -39,7 +40,7 @@ function FAQItem({ faq }: { faq: FAQ }) {
         }`}
       >
         <div className="overflow-hidden">
-          <p className="px-5 pb-5 text-gray-600 leading-relaxed whitespace-pre-line">{faq.answer}</p>
+          <RichText html={faq.answer} className="px-5 pb-5 text-gray-600 leading-relaxed" />
         </div>
       </div>
     </div>
