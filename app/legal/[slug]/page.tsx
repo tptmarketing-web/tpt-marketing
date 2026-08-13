@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { connectDB } from '@/lib/mongodb';
 import { SiteSettings } from '@/lib/models/site-settings';
 import { seedDatabase } from '@/lib/seed';
+import RichText from '@/components/rich-text';
 
 const slugMap: Record<string, string> = {
   'privacy-policy': 'privacyPolicy',
@@ -75,7 +76,7 @@ export default async function LegalPage({ params }: { params: { slug: string } }
       <main className="max-w-3xl mx-auto px-4 py-12">
         <article className="bg-white rounded-2xl shadow-sm p-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-6">{title}</h1>
-          <div className="prose prose-sm max-w-none text-gray-700 whitespace-pre-line leading-relaxed">{content}</div>
+          <RichText html={content} className="max-w-none text-gray-700 leading-relaxed" />
         </article>
       </main>
     </div>
