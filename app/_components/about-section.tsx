@@ -1,6 +1,8 @@
 'use client';
 
 import RichText from '@/components/rich-text';
+import TptLink from '@/components/tpt-link';
+
 interface Props {
   sellerName: string;
   sellerBio: string;
@@ -29,17 +31,17 @@ export default function AboutSection({ sellerName, sellerBio, sellerAvatarUrl, t
           )}
           <h3 className="text-2xl font-bold text-gray-800 mb-3">{sellerName ?? 'Your Name'}</h3>
           <RichText html={sellerBio} className="text-gray-600 mb-6 leading-relaxed" />
-          <a
+          <TptLink
             href={tptStoreUrl ?? '#'}
-            target="_blank"
-            rel="noopener noreferrer"
+            placement="about"
+            eventLabel="Visit My TPT Store"
             className="inline-flex items-center gap-2 px-6 py-3 bg-sky-400 hover:bg-sky-500 text-white font-semibold rounded-xl transition-colors"
           >
             Visit My TPT Store
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
-          </a>
+          </TptLink>
         </div>
       </div>
     </section>
