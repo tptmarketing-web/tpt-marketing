@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import RichText from '@/components/rich-text';
 
 interface Product {
   _id: string;
@@ -92,7 +93,7 @@ export default function ProductModal({ product, onClose }: Props) {
           </div>
 
           <h2 className="text-2xl font-bold text-gray-800 mb-4">{product?.title ?? 'Untitled'}</h2>
-          <p className="text-gray-600 mb-6 whitespace-pre-line">{product?.description ?? ''}</p>
+          <RichText html={product?.description} className="text-gray-600 mb-6" />
 
           {(product?.gradeLevel || product?.targetAudience) && (
             <div className="mb-4 p-4 bg-blue-50 rounded-xl">
@@ -106,7 +107,7 @@ export default function ProductModal({ product, onClose }: Props) {
           {product?.whatsIncluded && (
             <div className="mb-4 p-4 bg-green-50 rounded-xl">
               <h3 className="font-bold text-gray-700 mb-1">What&apos;s Included</h3>
-              <p className="text-gray-600 whitespace-pre-line">{product.whatsIncluded}</p>
+              <RichText html={product.whatsIncluded} className="text-gray-600" />
             </div>
           )}
 
@@ -126,7 +127,7 @@ export default function ProductModal({ product, onClose }: Props) {
           {product?.educationalGoal && (
             <div className="mb-6 p-4 bg-yellow-50 rounded-xl">
               <h3 className="font-bold text-gray-700 mb-1">Educational Goal</h3>
-              <p className="text-gray-600">{product.educationalGoal}</p>
+              <RichText html={product.educationalGoal} className="text-gray-600" />
             </div>
           )}
 
