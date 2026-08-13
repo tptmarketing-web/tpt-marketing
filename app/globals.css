@@ -53,3 +53,52 @@ html {
 .font-sans {
   font-family: var(--font-nunito), system-ui, sans-serif;
 }
+
+/* Rich text content (admin editor output + rendered site content) */
+.rich-text p {
+  margin: 0 0 0.75em;
+}
+.rich-text p:last-child {
+  margin-bottom: 0;
+}
+.rich-text h1,
+.rich-text h2,
+.rich-text h3,
+.rich-text h4 {
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 1em 0 0.5em;
+}
+.rich-text h1:first-child,
+.rich-text h2:first-child,
+.rich-text h3:first-child,
+.rich-text h4:first-child {
+  margin-top: 0;
+}
+.rich-text h1 { font-size: 1.5em; }
+.rich-text h2 { font-size: 1.3em; }
+.rich-text h3 { font-size: 1.15em; }
+.rich-text h4 { font-size: 1.05em; }
+.rich-text ul,
+.rich-text ol {
+  margin: 0 0 0.75em;
+  padding-left: 1.5em;
+}
+.rich-text ul { list-style: disc; }
+.rich-text ol { list-style: decimal; }
+.rich-text li { margin-bottom: 0.25em; }
+.rich-text blockquote {
+  border-left: 3px solid #fbbf24;
+  padding-left: 1em;
+  margin: 0 0 0.75em;
+  font-style: italic;
+  color: #6b7280;
+}
+.rich-text a {
+  color: #0284c7;
+  text-decoration: underline;
+}
+.rich-text a:hover { color: #0369a1; }
+.rich-text strong, .rich-text b { font-weight: 700; }
+.rich-text em, .rich-text i { font-style: italic; }
+.rich-text u { text-decoration: underline; }
