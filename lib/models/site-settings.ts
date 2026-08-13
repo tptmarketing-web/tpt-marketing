@@ -11,6 +11,8 @@ export interface ISiteSettings extends Document {
   sellerAvatarUrl: string | null;
   tptStoreUrl: string;
   pinterestUrl: string | null;
+  googleTagId: string | null;
+  tptConversionLabel: string | null;
   privacyPolicy: string;
   termsOfService: string;
   refundPolicy: string;
@@ -30,6 +32,8 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
     sellerAvatarUrl: { type: String, default: null },
     tptStoreUrl: { type: String, required: true },
     pinterestUrl: { type: String, default: null },
+    googleTagId: { type: String, default: null },
+    tptConversionLabel: { type: String, default: null },
     privacyPolicy: { type: String, required: true },
     termsOfService: { type: String, required: true },
     refundPolicy: { type: String, required: true },
