@@ -22,6 +22,7 @@ interface SiteSettingsData {
   sellerBio?: string;
   sellerAvatarUrl?: string | null;
   tptStoreUrl?: string;
+  pinterestUrl?: string | null;
   privacyPolicy?: string;
   termsOfService?: string;
   refundPolicy?: string;
@@ -133,6 +134,7 @@ export default function LandingPage() {
         brandName={settings?.brandName ?? 'My TPT Store'}
         sellerName={settings?.sellerName ?? ''}
         tptStoreUrl={settings?.tptStoreUrl ?? '#'}
+        pinterestUrl={settings?.pinterestUrl ?? null}
         onOpenLegal={openLegal}
       />
       {legalContent && (
