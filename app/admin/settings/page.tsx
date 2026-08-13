@@ -156,6 +156,46 @@ export default function AdminSettingsPage() {
           </div>
         ))}
 
+        {/* Tracking & Analytics */}
+        <div className="border-t border-gray-200 pt-6">
+          <h2 className="text-lg font-bold text-gray-800 mb-1">Tracking &amp; Analytics</h2>
+          <p className="text-sm text-gray-500 mb-4">
+            Paste your Google tag here to track visits and conversions. No code changes needed.
+          </p>
+
+          <div className="mb-5">
+            <label className="block text-sm font-medium text-gray-700 mb-2">Google Tag ID</label>
+            <input
+              type="text"
+              value={form?.googleTagId ?? ''}
+              onChange={(e) => handleChange('googleTagId', e.target.value)}
+              placeholder="G-XXXXXXXXXX, AW-123456789"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none font-mono text-sm"
+            />
+            <p className="text-xs text-gray-500 mt-1.5">
+              Google Analytics 4 (<span className="font-mono">G-…</span>) and / or Google Ads (<span className="font-mono">AW-…</span>).
+              Enter several IDs separated by commas. Leave empty to disable tracking completely.
+            </p>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Google Ads Conversion Label</label>
+            <input
+              type="text"
+              value={form?.tptConversionLabel ?? ''}
+              onChange={(e) => handleChange('tptConversionLabel', e.target.value)}
+              placeholder="AW-123456789/AbC-D_efGhIjKlMnO"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none font-mono text-sm"
+            />
+            <p className="text-xs text-gray-500 mt-1.5">
+              The <span className="font-mono">send_to</span> value from your Google Ads conversion action. A conversion is
+              recorded every time a visitor clicks a button that leads to Teachers Pay Teachers — on the home page,
+              in the footer, in product cards and on product pages. A <span className="font-mono">tpt_click</span> event is
+              also sent to Google Analytics.
+            </p>
+          </div>
+        </div>
+
         {/* FAQ Section */}
         <div className="border-t border-gray-200 pt-6">
           <div className="flex items-center justify-between mb-4">
