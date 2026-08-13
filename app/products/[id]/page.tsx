@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic';
 
 import { Metadata } from 'next';
+import { htmlToPlainText } from '@/lib/html';
 import { notFound } from 'next/navigation';
 import mongoose from 'mongoose';
 import { connectDB } from '@/lib/mongodb';
@@ -33,7 +34,7 @@ export async function generateMetadata(
     return { title: `Resource Not Found | ${brand}` };
   }
 
-  const plainDesc = (product?.description ?? '')
+  const plainDesc = htmlToPlainText(product?.description ?? '')
     .replace(/\s+/g, ' ')
     .trim()
     .slice(0, 160);
