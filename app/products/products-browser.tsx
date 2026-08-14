@@ -1,6 +1,7 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import ProductCard, { ProductCardData } from '@/app/_components/product-card';
 
 type Product = ProductCardData;
@@ -13,10 +14,36 @@ const selectClass =
   'w-full sm:w-auto px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm font-semibold text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400 cursor-pointer';
 
 export default function ProductsBrowser({ products }: Props) {
-  const [search, setSearch] = useState('');
-  const [category, setCategory] = useState('all');
-  const [format, setFormat] = useState('all');
-  const [sort, setSort] = useState('default');
+  const searchParams = useSearchParams();
+
+  // Restore any filters carried in the URL, so returning from a product page
+  // (or sharing/bookmarking a filtered view) keeps the same selection.
+  const [search, setSearch] = useState(() => searchParams?.get('q') ?? '');
+  const [category, setCategory] = useState(() => searchParams?.get('category') ?? 'all');
+  const [format, setFormat] = useState(() => searchParams?.get('format') ?? 'all');
+  const [sort, setSort] = useState(() => searchParams?.get('sort') ?? 'default');
+
+  // Current filter state as a query string, used both for the browser URL and
+  // for the "back" target handed to each product card.
+  const query = useMemo(() => {
+    const params = new URLSearchParams();
+    if (search.trim()) params.set('q', search.trim());
+    if (category !== 'all') params.set('category', category);
+    if (format !== 'all') params.set('format', format);
+    if (sort !== 'default') params.set('sort', sort);
+    return params.toString();
+  }, [search, category, format, sort]);
+
+  const backHref = query ? `/products?${query}` : '/products';
+
+  // Keep the address bar in sync without re-rendering the server component.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const next = `${window.location.pathname}${query ? `?${query}` : ''}`;
+    if (next !== `${window.location.pathname}${window.location.search}`) {
+      window.history.replaceState(null, '', next);
+    }
+  }, [query]);
 
   // Distinct categories (resourceType)
   const categories = useMemo(() => {
@@ -154,7 +181,7 @@ export default function ProductsBrowser({ products }: Props) {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {visible.map((product) => (
-            <ProductCard key={product?._id} product={product} />
+            <ProductCard key={product?._id} product={product} backHref={backHref} />
           ))}
         </div>
       )}
