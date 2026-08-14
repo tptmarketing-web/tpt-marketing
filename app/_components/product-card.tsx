@@ -16,7 +16,16 @@ export interface ProductCardData {
   previewImages?: { url: string; altText: string; sortOrder: number }[];
 }
 
-export default function ProductCard({ product, className }: { product: ProductCardData; className?: string }) {
+export default function ProductCard({
+  product,
+  className,
+  backHref,
+}: {
+  product: ProductCardData;
+  className?: string;
+  /** Where the product page should send the visitor back to (keeps filters). */
+  backHref?: string;
+}) {
   const images = (product?.previewImages ?? [])
     .slice()
     .sort((a: any, b: any) => (a?.sortOrder ?? 0) - (b?.sortOrder ?? 0));
@@ -37,7 +46,7 @@ export default function ProductCard({ product, className }: { product: ProductCa
 
   return (
     <Link
-      href={`/products/${product?._id}`}
+      href={`/products/${product?._id}${backHref ? `?back=${encodeURIComponent(backHref)}` : ''}`}
       className={`bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer transform hover:-translate-y-1 flex flex-col ${className ?? ''}`}
     >
       <div className="relative aspect-[4/3] bg-gradient-to-br from-blue-100 to-yellow-100 overflow-hidden">
