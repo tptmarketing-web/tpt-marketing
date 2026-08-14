@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import RichText from '@/components/rich-text';
 import TptLink from '@/components/tpt-link';
 
@@ -33,6 +34,12 @@ export default function ProductDetailClient({ product, brandName, tptStoreUrl }:
     .sort((a, b) => (a?.sortOrder ?? 0) - (b?.sortOrder ?? 0));
   const [currentImage, setCurrentImage] = useState(0);
 
+  // Return the visitor to exactly the listing they came from, filters included.
+  // Falls back to the full catalog, then to the home page section.
+  const searchParams = useSearchParams();
+  const rawBack = searchParams?.get('back') ?? '';
+  const backHref = rawBack.startsWith('/') ? rawBack : '/products';
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-yellow-50">
       {/* Header */}
@@ -42,7 +49,7 @@ export default function ProductDetailClient({ product, brandName, tptStoreUrl }:
             {brandName}
           </Link>
           <Link
-            href="/#products"
+            href={backHref}
             className="text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors"
           >
             &larr; Back to all resources
@@ -54,7 +61,7 @@ export default function ProductDetailClient({ product, brandName, tptStoreUrl }:
         <nav className="text-sm text-gray-400 mb-6" aria-label="Breadcrumb">
           <Link href="/" className="hover:text-gray-600">Home</Link>
           <span className="mx-2">/</span>
-          <Link href="/#products" className="hover:text-gray-600">Resources</Link>
+          <Link href={backHref} className="hover:text-gray-600">Resources</Link>
           <span className="mx-2">/</span>
           <span className="text-gray-600">{product?.title}</span>
         </nav>
